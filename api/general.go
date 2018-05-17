@@ -2,6 +2,7 @@ package api
 
 import (
 	"encoding/json"
+	"io"
 	"net/http"
 
 	"github.com/julienschmidt/httprouter"
@@ -18,6 +19,7 @@ func successResponse(w http.ResponseWriter, v interface{})  {
 	if err != nil {
 		http500status(w)
 	}
+	w.Header().Set("content-type", "application/json; charset=utf-8")
 	_, err = w.Write(b)
 	if err != nil {
 		http500status(w)
@@ -26,4 +28,9 @@ func successResponse(w http.ResponseWriter, v interface{})  {
 
 func http500status(w http.ResponseWriter)  {
 	w.WriteHeader(http.StatusInternalServerError)
+}
+
+func invalidRequest(w http.ResponseWriter)  {
+	w.WriteHeader(http.StatusBadRequest)
+	_, _ = io.WriteString(w, `{"code":400,"message":"invalid request body"}`)
 }

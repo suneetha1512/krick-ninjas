@@ -1,8 +1,19 @@
-hash: fb91af107f8e8827962d2b54b03d15717d5105af8e187fc4384f8f415d1ed663
-updated: 2018-05-17T10:45:53.89087237-07:00
+hash: 081aa9a7df2d195afd7aab243fe08c7762a66e247da0ddf64552d2eadfb7adfc
+updated: 2018-05-17T14:04:59.902844674-07:00
 imports:
 - name: github.com/jinzhu/gorm
   version: 6ed508ec6a4ecb3531899a69cbc746ccf65a4166
+  subpackages:
+  - dialects/postgres
+- name: github.com/jinzhu/inflection
+  version: 04140366298a54a039076d798123ffa108fff46c
 - name: github.com/julienschmidt/httprouter
   version: 8c199fb6259ffc1af525cc3ad52ee60ba8359669
+- name: github.com/lib/pq
+  version: d34b9ff171c21ad295489235aec8b6626023cd04
+  subpackages:
+  - hstore
+  - oid
+- name: github.com/rs/xid
+  version: 02dd45c33376f85d1064355dc790dcc4850596b1
 testImports: []
