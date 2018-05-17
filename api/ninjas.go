@@ -31,3 +31,31 @@ func GetPerson(db database.DB) httprouter.Handle {
 		successResponse(w, results)
 	}
 }
+
+func AddGroup(db database.DB) httprouter.Handle {
+	return func(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
+		data := models.Group{}
+		if err := json.NewDecoder(r.Body).Decode(&data); err != nil {
+			fmt.Printf("failed to decode group body %s", err)
+			invalidRequest(w)
+			return
+		}
+		db.AddGroup(data)
+	}
+}
+
+func AddMemberToGroup(db database.DB) httprouter.Handle  {
+	return func(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
+		groupId := p.ByName("groupId")
+		memberId := p.ByName("memberId")
+		db.AddPersonToGroup(memberId, groupId)
+	}
+}
+
+func FindMembers(db database.DB) httprouter.Handle  {
+	return func(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
+		groupId := p.ByName("groupId")
+		results := db.FindMembers(groupId)
+		successResponse(w, results)
+	}
+}
