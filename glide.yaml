@@ -1,4 +1,4 @@
-package: github.com/suneetha1512/krick-ninjas
+package: github.com/suneetha1512/let-me-choose
 import:
 - package: github.com/jinzhu/gorm
   version: ~1.9.1

@@ -6,8 +6,8 @@ import (
 	"net/http"
 
 	"github.com/julienschmidt/httprouter"
-	"github.com/suneetha1512/krick-ninjas/database"
-	"github.com/suneetha1512/krick-ninjas/models"
+	"github.com/suneetha1512/let-me-choose/database"
+	"github.com/suneetha1512/let-me-choose/models"
 )
 
 func AddPerson(db database.DB) httprouter.Handle {

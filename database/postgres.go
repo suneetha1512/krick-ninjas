@@ -6,7 +6,7 @@ import (
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/postgres"
 	"github.com/rs/xid"
-	"github.com/suneetha1512/krick-ninjas/models"
+	"github.com/suneetha1512/let-me-choose/models"
 )
 
 type DB struct {

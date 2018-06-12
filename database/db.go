@@ -1,6 +1,6 @@
 package database
 
-import "github.com/suneetha1512/krick-ninjas/models"
+import "github.com/suneetha1512/let-me-choose/models"
 
 type Database interface {
 	AddPerson(person models.Person)

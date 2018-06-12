@@ -1,5 +1,5 @@
-hash: 081aa9a7df2d195afd7aab243fe08c7762a66e247da0ddf64552d2eadfb7adfc
-updated: 2018-05-17T14:04:59.902844674-07:00
+hash: 4de39553558188b5055d931922f71a4798e5f6587dd21644e0c5f3402f881e32
+updated: 2018-06-12T13:11:56.882080193-07:00
 imports:
 - name: github.com/jinzhu/gorm
   version: 6ed508ec6a4ecb3531899a69cbc746ccf65a4166
@@ -10,10 +10,16 @@ imports:
 - name: github.com/julienschmidt/httprouter
   version: 8c199fb6259ffc1af525cc3ad52ee60ba8359669
 - name: github.com/lib/pq
-  version: d34b9ff171c21ad295489235aec8b6626023cd04
+  version: 90697d60dd844d5ef6ff15135d0203f65d2f53b8
   subpackages:
   - hstore
   - oid
 - name: github.com/rs/xid
   version: 02dd45c33376f85d1064355dc790dcc4850596b1
+- name: github.com/suneetha1512/let-me-choose
+  version: 21fe4a2c32fe3cd19ede472b76bc6074355054b9
+  subpackages:
+  - api
+  - database
+  - models
 testImports: []
