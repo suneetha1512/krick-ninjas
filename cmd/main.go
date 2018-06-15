@@ -25,9 +25,8 @@ func main() {
 
 	r.POST("/person", api.AddPerson(db))
 	r.GET("/person", api.GetPerson(db))
-	r.POST("/group", api.AddGroup(db))
-	r.GET("/group/:groupId/members", api.FindMembers(db))
-	r.POST("/group/:groupId/member/:memberId", api.AddMemberToGroup(db))
+	r.POST("/choice", api.AddChoice(db))
+	r.POST("/choice/:choiceId/member/:memberId", api.AddMemberToChoice(db))
 
 	fmt.Println("Starting service on 8432 port...")
 	log.Fatal(http.ListenAndServe(":8432", r))

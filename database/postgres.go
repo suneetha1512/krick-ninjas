@@ -19,7 +19,7 @@ func Setup(connString string) (DB, error) {
 		return DB{}, fmt.Errorf("unable to initaizile DB %s", err)
 	}
 	// create tables
-	db.AutoMigrate(&models.Person{}, &models.Group{})
+	db.AutoMigrate(&models.Person{}, &models.Choice{})
 	return DB{db}, nil;
 }
 
@@ -28,20 +28,10 @@ func (db DB) AddPerson(person models.Person) {
 	db.db.Create(&person)
 }
 
-func (db DB) AddPersonToGroup(memberId string, groupId string) {
-
-	//update people
-	user := models.Person{
-		Id: memberId,
-	}
-	person := db.FindPersons(user)
-	personGroups := append(person[0].Groups, groupId)
-	db.db.Model(&user).Updates(models.Person{Groups: personGroups})
-
-	//update group
-	groupDetails := db.FindGroup(groupId)
-	persons := append(groupDetails.Members, memberId)
-	db.db.Model(&models.Group{Id: groupId,}).Updates(models.Group{Members: persons})
+func (db DB) UpdatePersonChoice(memberId string, choiceId string) {
+	person := db.FindPersonById(memberId)
+	person.Choices = append(person.Choices, choiceId)
+	db.db.Model(&person).Updates(models.Person{Choices: person.Choices})
 }
 
 func (db DB) FindPersons(person models.Person) []models.Person {
@@ -50,25 +40,19 @@ func (db DB) FindPersons(person models.Person) []models.Person {
 	return results
 }
 
-func (db DB) AddGroup(group models.Group) {
-	group.Id = xid.New().String()
-	db.db.Create(&group)
+func (db DB) FindPersonById(memberId string) models.Person {
+	var person models.Person
+	db.db.Where(&models.Person{Id: memberId}).Find(&person)
+	return person
 }
 
-func (db DB) FindGroup(groupId string)models.Group {
-	var group models.Group
-	db.db.Where(&models.Group{Id: groupId}).Find(&group)
-	return group
+func (db DB) AddChoice(choice models.Choice) {
+	choice.Id = xid.New().String()
+	db.db.Create(&choice)
 }
 
-func (db DB) FindMembers(groupId string) []models.Person {
-	var group models.Group
-	var results []models.Person
-	var personIds []string
-	db.db.Where(models.Group{Id: groupId}).Find(&group)
-	for _, id := range group.Members {
-		personIds = append(personIds, id)
-	}
-	db.db.Where("id in (?)", personIds).Find(&results)
-	return results
+func (db DB) FindChoice(choiceId string) models.Choice {
+	var choice models.Choice
+	db.db.Where(&models.Choice{Id: choiceId}).Find(&choice)
+	return choice
 }
